@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sunmi">
    <application
-        android:label="sunmi"
+        android:label="Regideso"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

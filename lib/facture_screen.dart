@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:sunmi/sunmi.dart';
+import 'package:sunmi/modelFacture.dart';
 
-class SunmiScreen extends StatefulWidget {
-  const SunmiScreen({Key? key}) : super(key: key);
+class FactureScreen extends StatefulWidget {
+  const FactureScreen({Key? key}) : super(key: key);
 
   @override
-  State<SunmiScreen> createState() => _SunmiScreenState();
+  State<FactureScreen> createState() => _SunmiScreenState();
 }
 
-class _SunmiScreenState extends State<SunmiScreen> {
+class _SunmiScreenState extends State<FactureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sunmi Flutter Demo'),
+        title: const Text('Regideso Facture Demo'),
       ),
       body: Container(
         height: double.infinity,
@@ -22,17 +22,17 @@ class _SunmiScreenState extends State<SunmiScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Center(
-              child: Text('Sunmi pos printer'),
+              child: Text('Impression Facture Regideso'),
             ),
             const SizedBox(
               height: 10,
             ),
             ElevatedButton(
               onPressed: () {
-                Sunmi printer = Sunmi();
+                ModelFactureRegideso printer = ModelFactureRegideso();
                 printer.printReceipt();
               },
-              child: const Text('Print'),
+              child: const Text('Test print'),
             ),
           ],
         ),

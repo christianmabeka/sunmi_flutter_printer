@@ -4,7 +4,7 @@ import 'package:sunmi_printer_plus/enums.dart';
 import 'package:sunmi_printer_plus/sunmi_printer_plus.dart';
 import 'package:sunmi_printer_plus/sunmi_style.dart';
 
-class Sunmi {
+class ModelFactureRegideso {
   // initialize sunmi printer
   Future<void> initialize() async {
     await SunmiPrinter.bindingPrinter();
@@ -15,7 +15,7 @@ class Sunmi {
   // print image
   Future<void> printLogoImage() async {
     await SunmiPrinter.lineWrap(1); // creates one line space
-    Uint8List byte = await _getImageFromAsset('assets/flutter_black_white.png');
+    Uint8List byte = await _getImageFromAsset('assets/logoRegideso.png');
     await SunmiPrinter.printImage(byte);
     await SunmiPrinter.lineWrap(1); // creates one line space
   }
@@ -36,11 +36,11 @@ class Sunmi {
     await SunmiPrinter.lineWrap(1); // creates one line space
     await SunmiPrinter.printText(text,
         style: SunmiStyle(
-          fontSize: SunmiFontSize.MD,
-          bold: true,
+          fontSize: SunmiFontSize.SM,
+          bold: false,
           align: SunmiPrintAlign.CENTER,
         ));
-    await SunmiPrinter.lineWrap(1); // creates one line space
+    await SunmiPrinter.line(len: 16); // creates one line space
   }
 
   // print text as qrcode
@@ -53,35 +53,45 @@ class Sunmi {
   }
 
   // print row and 2 columns
-  Future<void> printRowAndColumns(
-      {String? column1 = "column 1",
-      String? column2 = "column 2",
-      String? column3 = "column 3"}) async {
-    await SunmiPrinter.lineWrap(1); // creates one line space
-
+  Future<void> printRowAndColumns({
+    String? column1 = "Mabeka",
+    String? column2 = "082318488",
+    String? column3 = "10000 CDF",
+    String? column4 = "Kintambo",
+    String? column5 = "Mulema",
+    String? column6 = "AB12345",
+  }) async {
+    //await SunmiPrinter.lineWrap(1); // creates one line space
     // set alignment center
-    await SunmiPrinter.setAlignment(SunmiPrintAlign.CENTER);
+    //await SunmiPrinter.setAlignment(SunmiPrintAlign.CENTER);
 
     // prints a row with 3 columns
     // total width of columns should be 30
     await SunmiPrinter.printRow(cols: [
-      ColumnMaker(
-        text: "$column1",
-        width: 10,
-        align: SunmiPrintAlign.LEFT,
-      ),
-      ColumnMaker(
-        text: "$column2",
-        width: 10,
-        align: SunmiPrintAlign.CENTER,
-      ),
-      ColumnMaker(
-        text: "$column3",
-        width: 10,
-        align: SunmiPrintAlign.RIGHT,
-      ),
+      ColumnMaker(text: 'Client:', width: 9, align: SunmiPrintAlign.LEFT),
+      ColumnMaker(text: "$column1", width: 15, align: SunmiPrintAlign.RIGHT),
     ]);
-    await SunmiPrinter.lineWrap(1); // creates one line space
+    await SunmiPrinter.printRow(cols: [
+      ColumnMaker(text: 'Tél:', width: 9, align: SunmiPrintAlign.LEFT),
+      ColumnMaker(text: "$column2", width: 15, align: SunmiPrintAlign.RIGHT),
+    ]);
+    await SunmiPrinter.printRow(cols: [
+      ColumnMaker(text: 'Facture:', width: 9, align: SunmiPrintAlign.LEFT),
+      ColumnMaker(text: "$column6", width: 15, align: SunmiPrintAlign.RIGHT),
+    ]);
+    await SunmiPrinter.printRow(cols: [
+      ColumnMaker(text: 'Montant:', width: 9, align: SunmiPrintAlign.LEFT),
+      ColumnMaker(text: "$column3", width: 15, align: SunmiPrintAlign.RIGHT),
+    ]);
+    await SunmiPrinter.printRow(cols: [
+      ColumnMaker(text: 'Agence:', width: 9, align: SunmiPrintAlign.LEFT),
+      ColumnMaker(text: "$column4", width: 15, align: SunmiPrintAlign.RIGHT),
+    ]);
+    await SunmiPrinter.printRow(cols: [
+      ColumnMaker(text: 'Agent:', width: 9, align: SunmiPrintAlign.LEFT),
+      ColumnMaker(text: "$column5", width: 15, align: SunmiPrintAlign.RIGHT),
+    ]);
+    await SunmiPrinter.line(len: 16); // creates one line space
   }
 
   /* its important to close the connection with the printer once you are done */
@@ -93,10 +103,9 @@ class Sunmi {
   Future<void> printReceipt() async {
     await initialize();
     await printLogoImage();
-    await printText("Flutter is awesome");
-    await printRowAndColumns(
-        column1: "Column 1", column2: "Column 2", column3: "Column 3");
-    await printQRCode("Dart is powerful");
+    await printText("La qualité c'est notre priorité");
+    await printRowAndColumns();
+    await printQRCode("MabekaFactureAB12345");
     //await SunmiPrinter.cut();
     await closePrinter();
   }

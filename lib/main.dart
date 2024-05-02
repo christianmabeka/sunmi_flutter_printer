@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sunmi/sunmi_screen.dart';
+import 'package:sunmi/facture_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sunmi Flutter Demo',
+      title: 'Regideso Facture Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SunmiScreen(),
+      home: FactureScreen(),
     );
   }
 }
